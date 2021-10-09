@@ -1,20 +1,21 @@
 package stepDefinition;
 
 import java.io.FileNotFoundException;
-
 import org.junit.Assert;
-
+import utilities.Utilities;
 import base.BaseBuilder;
 import base.CrudOperation;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import utilities.PropertiesReader;
 
 public class ERStepDefinition extends CrudOperation {
 	PropertiesReader pro = new PropertiesReader();
 	public static Response response;
+	JsonPath js;
 	
 	
 	@Given("^The user have proper Access key$")
@@ -35,5 +36,11 @@ public class ERStepDefinition extends CrudOperation {
 		Assert.assertEquals(response.statusCode(), int1);
 	}
 
+	
+	@Then("API should return {string} as {string} in response body")
+	public void api_should_return_as_in_response_body(String string, String string2) {
+		js = Utilities.rawToJson(response);
+		Assert.assertEquals(js.get(string).toString(), string2);
+	}
 
 }

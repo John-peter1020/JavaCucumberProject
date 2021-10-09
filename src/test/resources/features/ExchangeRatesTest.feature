@@ -24,3 +24,12 @@ Feature: Exchange Rate API Test
   	Given The user have proper Access key
     When The user sents "GET" request to "LatestRates" API with API key 
     Then API should return status as 200
+
+	@tag2
+  Scenario: Verify Rates API with Valid response
+    Given The user have proper Access key
+    When The user sents "GET" request to "LatestRates" API with API key
+    Then API should return "success" as "true" in response body
+    
+    
+    
