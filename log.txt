@@ -1,8 +1,8 @@
 Request method:	GET
-Request URI:	http://api.exchangeratesapi.io/v1/2022-10-02?access_key=950a64abe7c791013959e6e1029e328a
+Request URI:	http://api.exchangeratesapi.io/v1/latest?access_key=asd
 Proxy:			<none>
 Request params:	<none>
-Query params:	access_key=950a64abe7c791013959e6e1029e328a
+Query params:	access_key=asd
 Form params:	<none>
 Path params:	<none>
 Headers:		Accept=*/*
@@ -10,23 +10,24 @@ Headers:		Accept=*/*
 Cookies:		<none>
 Multiparts:		<none>
 Body:			<none>
-HTTP/1.1 400 Bad Request
-Date: Sat, 09 Oct 2021 15:16:49 GMT
+HTTP/1.1 401 Unauthorized
+Date: Sat, 09 Oct 2021 15:28:53 GMT
 Content-Type: application/json; Charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
-x-apilayer-transaction-id: 08b11e48-32e6-4b4f-b85c-2195939a9c74
+cache-control: no-cache
 access-control-allow-methods: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS
 access-control-allow-origin: *
+x-blocked-at-loadbalancer: 1
 CF-Cache-Status: DYNAMIC
-Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=osn%2FZ2CWOUHFkxDu05MImWODk4Qkk4eFyBNBwH%2FdLtSjlDZn3kjaJY08%2F0F8v%2FiY8TRXy0ReX5Q8ZjkToQ3xdnhSjcoiO8aetToVVxE8mRVIHfd3wo4GEekdJ%2BrcIXR4jlQUb2hqEmxk"}],"group":"cf-nel","max_age":604800}
+Report-To: {"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xZwpUqTJCZ8Th0uIr%2B%2BP5LqKfip0brPgHtahiVjgMuK2HZaxAi%2BBnjmyCJIGA6i514GTwLHPPpMUZ26v%2FqWDJlnJtCTXevGUzYHg9wgHoqQlYFNTKI36qa5KWvFrYB6FXD%2FxNhHbWVZj"}],"group":"cf-nel","max_age":604800}
 NEL: {"success_fraction":0,"report_to":"cf-nel","max_age":604800}
 Server: cloudflare
-CF-RAY: 69b892813c116eac-BOM
+CF-RAY: 69b8a42ac8396e6a-BOM
 
 {
     "error": {
-        "code": "invalid_date",
-        "message": "You have entered an invalid date. [Required format: date=YYYY-MM-DD]"
+        "code": "invalid_access_key",
+        "message": "You have not supplied a valid API Access Key."
     }
 }

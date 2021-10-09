@@ -59,5 +59,10 @@ public class ERStepDefinition extends CrudOperation {
 		}
 	}
 	
+	@Given("The user have invalid Access keyas {string}")
+	public void the_user_have_invalid_access_keyas(String string) {
+		BaseBuilder.accessKey = string;
+	}
+	
 	
 }

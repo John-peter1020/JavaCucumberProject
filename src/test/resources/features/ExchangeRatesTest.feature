@@ -56,6 +56,12 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "incorrectDate" API with date as "2022-10-02"
     Then API should return "error.code" as "invalid_date" in response body    
     
+ @tag7
+	Scenario: Verify for invalid accesskey proper error message appears
+    Given The user have invalid Access keyas "asd"
+    When The user sents "GET" request to "LatestRates" API with API key
+    Then API should return "error.code" as "invalid_access_key" in response body    
+    
     
     
     
