@@ -28,6 +28,13 @@ public class CrudOperation  {
 			reqspec = RestAssured.given().spec(reqspec);
 			response = reqspec.get(resourceUri).then().extract().response();
 		}
+		else if(apiName.equalsIgnoreCase("DateRates")) 
+		{
+			reqspec = new BaseBuilder().dateSpecBuilder();
+			System.out.println("Sending GET request to: "+resourceUri+" service");
+			reqspec = RestAssured.given().spec(reqspec);
+			response = reqspec.get(resourceUri).then().extract().response();
+		}
 		return response;
 	}
 	

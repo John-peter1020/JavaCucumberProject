@@ -48,4 +48,13 @@ public class ERStepDefinition extends CrudOperation {
 		CrudOperation.resourceUri=string;
 	}
 
+	@When("The user sents {string} request to {string} API with date as {string}")
+	public void the_user_sents_request_to_api_with_date_as(String requestType, String apiName, String date) throws FileNotFoundException {
+		if(requestType.equalsIgnoreCase("GET")) {
+			CrudOperation.resourceUri="/v1/"+date;
+			response = performGETcall(apiName);
+		}
+	}
+	
+	
 }

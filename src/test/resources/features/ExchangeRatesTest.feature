@@ -38,3 +38,12 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "incorrectpath" API with API key
     Then API should return "success" as "false" in response body    
     
+	@tag4
+  Scenario: Verify Rates API for specific date with Valid Status Code
+  	Given The user have proper Access key
+    When The user sents "GET" request to "DateRates" API with date as "2021-10-02"
+    Then API should return status as 200    
+    
+    
+    
+    

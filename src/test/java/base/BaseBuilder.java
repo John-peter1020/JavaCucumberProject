@@ -39,5 +39,20 @@ public class BaseBuilder {
 		return reqspec;
 	}
 	
+	public RequestSpecification dateSpecBuilder() throws FileNotFoundException {
+		builder = new RequestSpecBuilder();
+
+		builder.setBaseUri(pro.getPropValue("ExchangeRateBaseURI"));
+
+		System.out.println("Building Headers....");
+		builder.addQueryParam("access_key", pro.getPropValue("ACCESS_KEY"));
+		builder.setContentType("application/json");
+		log = new PrintStream(new FileOutputStream("log.txt"));
+		builder.addFilter(RequestLoggingFilter.logRequestTo(log));
+		builder.addFilter(ResponseLoggingFilter.logResponseTo(log));
+		reqspec = builder.build();
+		return reqspec;
+	}
+	
 
 }
