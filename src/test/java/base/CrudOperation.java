@@ -1,37 +1,29 @@
 package base;
 
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.response.Response;
+import java.io.FileNotFoundException;
+
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import utilities.PropertiesReader;
 
-public class CrudOperation {
+public class CrudOperation  {
+	static Response response;
+	RequestSpecification reqspec;
+	public static String resourceUri;
 	
-	public static String accessKey;
-
-	public Response performGETcall(String apiName) {
-		PropertiesReader pro = new PropertiesReader();
-
-		RequestSpecBuilder builder = new RequestSpecBuilder();
-
-		builder.setBaseUri(pro.getPropValue("ExchangeRateBaseURI"));
-		builder.addQueryParam("access_key", accessKey);
-		builder.setContentType("application/json");
-		RequestSpecification reqspec = builder.build();
-		reqspec = RestAssured.given().spec(reqspec);
-		Response response = null;
-		if(apiName.equals("LatestRates")) {
-			response = reqspec.get("/v1/latest/").then().extract().response();
+	public Response performGETcall(String apiName) throws FileNotFoundException {
+		APIResources resourceAPI;
+		
+		if(apiName.equalsIgnoreCase("LatestRates")) 
+		{
+			resourceAPI= APIResources.valueOf(apiName);
+			reqspec = new BaseBuilder().latestRateSpecBuilder();
+			System.out.println("Sending GET request to: "+resourceAPI.getResource()+" service");
+			reqspec = RestAssured.given().spec(reqspec);
+			response = reqspec.get(resourceAPI.getResource()).then().extract().response();
 		}
-		System.out.println(response);
 		return response;
 	}
-
-	public Response performPOSTcall(String apiName) {
-		Response response = null;
-
-		return response;
-	}
+	
 
 }

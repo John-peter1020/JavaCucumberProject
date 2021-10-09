@@ -1,6 +1,10 @@
 package stepDefinition;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Assert;
+
+import base.BaseBuilder;
 import base.CrudOperation;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -13,16 +17,18 @@ public class ERStepDefinition extends CrudOperation {
 	public static Response response;
 	
 	
-	@Given("The user have proper Access key")
-	public void the_user_have_proper_access_key() {
-		CrudOperation.accessKey = pro.getPropValue("ACCESS_KEY");
+	@Given("^The user have proper Access key$")
+	public void the_user_have_proper_Access_key() throws Exception {
+		BaseBuilder.accessKey = pro.getPropValue("ACCESS_KEY");
 	}
+	
 	@When("The user sents {string} request to {string} API with API key")
-	public void the_user_sents_request_to_api_with_api_key(String string, String string2) {
-		if(string.equalsIgnoreCase("GET")) {
-			response = performGETcall(string2);
+	public void the_user_sents_request_to_api_with_api_key(String requestType, String apiName) throws FileNotFoundException  {
+		if(requestType.equalsIgnoreCase("GET")) {
+			response = performGETcall(apiName);
 		}
 	}
+	
 	@Then("API should return status as {int}")
 	public void api_should_return_status_as(int int1) {
 		System.out.println("Status Code: "+response.statusCode());
