@@ -42,5 +42,10 @@ public class ERStepDefinition extends CrudOperation {
 		js = Utilities.rawToJson(response);
 		Assert.assertEquals(js.get(string).toString(), string2);
 	}
+	
+	@When("an incorrect or incomplete resource uri is provided as {string}")
+	public void an_incorrect_or_incomplete_resource_uri_is_provided_as(String string) {
+		CrudOperation.resourceUri=string;
+	}
 
 }

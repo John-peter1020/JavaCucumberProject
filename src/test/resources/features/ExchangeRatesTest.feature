@@ -31,5 +31,10 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "LatestRates" API with API key
     Then API should return "success" as "true" in response body
     
-    
+	@tag3
+  Scenario: Verify Rates API gives proper response when resource uri is incorrect
+    Given The user have proper Access key
+    When an incorrect or incomplete resource uri is provided as "/api/"
+    When The user sents "GET" request to "incorrectpath" API with API key
+    Then API should return "success" as "false" in response body    
     
