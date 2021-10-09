@@ -22,6 +22,12 @@ public class CrudOperation  {
 			reqspec = RestAssured.given().spec(reqspec);
 			response = reqspec.get(resourceAPI.getResource()).then().extract().response();
 		}
+		else if(resourceUri!=null) {
+			reqspec = new BaseBuilder().latestRateSpecBuilder();
+			System.out.println("Sending GET request to: "+resourceUri+" service");
+			reqspec = RestAssured.given().spec(reqspec);
+			response = reqspec.get(resourceUri).then().extract().response();
+		}
 		return response;
 	}
 	
