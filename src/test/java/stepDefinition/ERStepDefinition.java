@@ -10,6 +10,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import model.ExchangeRate;
 import utilities.PropertiesReader;
 
 public class ERStepDefinition extends CrudOperation {
@@ -34,6 +35,8 @@ public class ERStepDefinition extends CrudOperation {
 	public void api_should_return_status_as(int int1) {
 		System.out.println("Status Code: "+response.statusCode());
 		Assert.assertEquals(response.statusCode(), int1);
+		ExchangeRate latestExchangeRate = response.getBody().as(ExchangeRate.class);
+		Assert.assertEquals(latestExchangeRate.getSuccess(), true);
 	}
 
 	
