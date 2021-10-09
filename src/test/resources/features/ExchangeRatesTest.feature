@@ -44,6 +44,10 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "DateRates" API with date as "2021-10-02"
     Then API should return status as 200    
     
-    
+	@tag5
+  Scenario: Verify Rates API for specific date with Valid response
+  	Given The user have proper Access key
+    When The user sents "GET" request to "DateRates" API with date as "2021-10-02"
+    Then API should return "success" as "true" in response body
     
     
