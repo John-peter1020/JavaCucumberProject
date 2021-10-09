@@ -17,6 +17,7 @@ public class ERStepDefinition extends CrudOperation {
 	PropertiesReader pro = new PropertiesReader();
 	public static Response response;
 	JsonPath js;
+	String reqDate;
 	
 	
 	@Given("^The user have proper Access key$")
@@ -54,7 +55,8 @@ public class ERStepDefinition extends CrudOperation {
 	@When("The user sents {string} request to {string} API with date as {string}")
 	public void the_user_sents_request_to_api_with_date_as(String requestType, String apiName, String date) throws FileNotFoundException {
 		if(requestType.equalsIgnoreCase("GET")) {
-			CrudOperation.resourceUri="/v1/"+date;
+			reqDate=date;
+			CrudOperation.resourceUri="/v1/"+reqDate;
 			response = performGETcall(apiName);
 		}
 	}
@@ -62,6 +64,12 @@ public class ERStepDefinition extends CrudOperation {
 	@Given("The user have invalid Access keyas {string}")
 	public void the_user_have_invalid_access_keyas(String string) {
 		BaseBuilder.accessKey = string;
+	}
+	
+	@Then("API should return same date that was passed in the request")
+	public void api_should_return_same_date_that_was_passed_in_the_request() {
+		ExchangeRate latestExchangeRate = response.getBody().as(ExchangeRate.class);
+		Assert.assertEquals(latestExchangeRate.getDate(), reqDate);		
 	}
 	
 	

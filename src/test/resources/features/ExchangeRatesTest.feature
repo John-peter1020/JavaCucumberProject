@@ -62,6 +62,10 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "LatestRates" API with API key
     Then API should return "error.code" as "invalid_access_key" in response body    
     
-    
+  @tag8
+  Scenario: Verify Rates API when date is passed in resource then same date appears in response
+  	Given The user have proper Access key
+    When The user sents "GET" request to "DateRates" API with date as "2021-10-02"
+    Then API should return same date that was passed in the request
     
     
