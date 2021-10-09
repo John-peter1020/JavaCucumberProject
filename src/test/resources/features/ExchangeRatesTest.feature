@@ -50,4 +50,12 @@ Feature: Exchange Rate API Test
     When The user sents "GET" request to "DateRates" API with date as "2021-10-02"
     Then API should return "success" as "true" in response body
     
+  @tag6
+	Scenario: Verify Rates API for specific date gives proper response when date is future date or incorrect
+    Given The user have proper Access key
+    When The user sents "GET" request to "incorrectDate" API with date as "2022-10-02"
+    Then API should return "error.code" as "invalid_date" in response body    
+    
+    
+    
     
